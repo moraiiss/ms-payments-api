@@ -1,5 +1,6 @@
 # Roadmap
 
+## Configurações
 - Configuração e organização inicial do projeto
 - Configuração de conventional commits e detekt
 - Configuração de profiles
