@@ -1,6 +1,6 @@
 package com.study.payments.domain
 
-abstract class Person (
+open class Person (
     val name: String,
     val email: String,
     val password: String,
