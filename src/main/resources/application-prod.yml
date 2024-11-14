@@ -1,9 +1,9 @@
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/paymentsdb
-    username: root
-    password: 
+    url: jdbc:mysql://${PAYMENTS_MYSQL_DB_HOST}:${PAYMENTS_MYSQL_DB_PORT}/${PAYMENTS_MYSQL_DB_NAME}
+    username: ${PAYMENTS_MYSQL_DB_USER}
+    password: ${PAYMENTS_MYSQL_DB_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     properties:
