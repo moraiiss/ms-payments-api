@@ -12,6 +12,11 @@ services:
       - "3308:3306"
     networks:
       - payments-network
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   ms.payments.api:
     image: ms.payments.api
@@ -34,7 +39,8 @@ services:
     links:
       - ms.payments.db
     depends_on:
-      - ms.payments.db
+      ms.payments.db:
+        condition: service_healthy
     networks:
       - payments-network
 

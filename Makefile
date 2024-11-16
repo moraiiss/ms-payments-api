@@ -6,6 +6,10 @@ build:
 	@$(MVNW) clean package -DskipTests
 	docker-compose up --build -d
 
+debug:
+	@$(MVNW) clean package -DskipTests
+	docker-compose up --build
+
 up:
 	docker-compose up -d
 

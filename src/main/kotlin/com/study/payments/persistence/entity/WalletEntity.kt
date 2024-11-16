@@ -1,23 +1,20 @@
 package com.study.payments.persistence.entity
 
-import com.study.payments.domain.DocumentTypeEnum
-import com.study.payments.domain.PersonTypeEnum
 import jakarta.persistence.Entity
-import jakarta.persistence.Id
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
 import jakarta.persistence.Table
-import java.time.LocalDateTime
 import java.math.BigDecimal
+import java.time.LocalDateTime
 
 @Entity
-@Table(name = "persons")
-class PersonEntity (
+@Table(name = "wallets")
+data class WalletEntity (
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
     val name: String,
-    val personType: PersonTypeEnum,
-    val documentType: DocumentTypeEnum,
+    val type: Int,
     val document: String,
     val email: String,
     val balance: BigDecimal,

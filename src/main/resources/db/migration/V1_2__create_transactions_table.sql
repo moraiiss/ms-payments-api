@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS transactions (
+    id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    payer BIGINT UNSIGNED NOT NULL,
+    payee BIGINT UNSIGNED NOT NULL,
+    value DECIMAL(10,2) NOT NULL,
+    status VARCHAR(60) NOT NULL,
+    created_at TIMESTAMP,
+
+    FOREIGN KEY (payer) REFERENCES wallets (id),
+    FOREIGN KEY (payee) REFERENCES wallets (id)
+);

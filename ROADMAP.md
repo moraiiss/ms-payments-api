@@ -15,3 +15,4 @@
 ## Docker
 - Configuração de ambiente local com containers
 - Documentação para execução do projeto em ambiente local
+- Edição do README.md com instruções para iniciar o projeto
