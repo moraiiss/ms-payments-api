@@ -2,13 +2,15 @@
 
 MVNW=./mvnw
 
-run-dev:
-	@SPRING_PROFILES_ACTIVE=dev $(MVNW) spring-boot:run
+build:
+	@$(MVNW) clean package -DskipTests
+	docker-compose up --build -d
 
-run-prod:
-	@SPRING_PROFILES_ACTIVE=prod $(MVNW) spring-boot:run
+up:
+	docker-compose up -d
 
-run-test:
+down:
+	docker-compose down
+
+test:
 	@SPRING_PROFILES_ACTIVE=test $(MVNW) test
-
-.PHONY: run-dev run-prod

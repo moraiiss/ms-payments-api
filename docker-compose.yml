@@ -1,0 +1,43 @@
+services:
+  ms.payments.db:
+    container_name: ms.payments.db
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: payments
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: secret
+    ports:
+      - "3308:3306"
+    networks:
+      - payments-network
+
+  ms.payments.api:
+    image: ms.payments.api
+    container_name: ms.payments.api
+    ports:
+      - "8081:8080"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: mvn spring-boot:run
+    restart: always
+    environment:
+      TZ: America/Sao_Paulo
+      SPRING_PROFILES_ACTIVE: dev
+      MS_PAYMENTS_DB_HOST: ms.payments.db
+      MS_PAYMENTS_DB_NAME: payments
+      MS_PAYMENTS_DB_PARAMS: allowPublicKeyRetrieval=true&useSSL=false
+      MS_PAYMENTS_DB_USER: admin
+      MS_PAYMENTS_DB_PASS: secret
+    links:
+      - ms.payments.db
+    depends_on:
+      - ms.payments.db
+    networks:
+      - payments-network
+
+networks:
+  payments-network:
+      driver: bridge

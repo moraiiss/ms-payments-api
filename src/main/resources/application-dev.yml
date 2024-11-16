@@ -1,12 +1,26 @@
+profile:
+  active: ${SPRING_PROFILES_ACTIVE}
+
 spring:
+  application.name: payments
+
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/paymentsdb
-    username: root
-    password: 
+    url: jdbc:mysql://${MS_PAYMENTS_DB_HOST}/${MS_PAYMENTS_DB_NAME}?${MS_PAYMENTS_DB_PARAMS}
+    username: ${MS_PAYMENTS_DB_USER}
+    password: ${MS_PAYMENTS_DB_PASS}
+
   jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    generate-ddl: true
     open-in-view: false
     properties:
       hibernate:
-        show_sql: true
         format_sql: true
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
