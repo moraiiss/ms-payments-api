@@ -12,6 +12,8 @@ services:
       - "3308:3306"
     networks:
       - payments-network
+    volumes:
+      - db_data:/var/lib/mysql # para persistir dados
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       interval: 10s
@@ -36,14 +38,19 @@ services:
       MS_PAYMENTS_DB_PARAMS: allowPublicKeyRetrieval=true&useSSL=false
       MS_PAYMENTS_DB_USER: admin
       MS_PAYMENTS_DB_PASS: secret
-    links:
-      - ms.payments.db
     depends_on:
       ms.payments.db:
         condition: service_healthy
     networks:
       - payments-network
+    volumes:
+      - .:/app  # monta o código-fonte no container
+      - maven_repo:/root/.m2  # volume para cache do Maven, evitando reinstalações a cada build
 
 networks:
   payments-network:
       driver: bridge
+
+volumes:
+  db_data:
+  maven_repo:

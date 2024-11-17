@@ -14,9 +14,17 @@ API Rest para simulação de pagamento simplificado entre vendedores e consumido
 
     make up
 
+A aplicação estará disponível em `http://localhost:8081` 
+
+[Swagger Docs](http://localhost:8081/swagger-ui/index.html)
+
 ## Executando os testes
 
     make test
+
+## Rodando o Detekt Check
+    
+    make format
 
 # REST API
 

@@ -1,4 +1,4 @@
-package com.study.payments.persistence.entity
+package com.study.payments.wallet.persistence
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue

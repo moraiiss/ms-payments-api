@@ -1,4 +1,4 @@
-package com.study.payments.domain
+package com.study.payments.transaction.core
 
 enum class TransactionStatusEnum {
     PENDING,
