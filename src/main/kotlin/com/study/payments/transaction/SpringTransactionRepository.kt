@@ -1,4 +1,4 @@
-package com.study.payments.transaction.persistence
+package com.study.payments.transaction
 
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository

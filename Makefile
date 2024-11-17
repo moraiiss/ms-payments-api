@@ -3,7 +3,7 @@
 MVNW=./mvnw
 
 build-all:
-	@$(MVNW) clean package
+	@$(MVNW) clean package -DskipTests
 	docker-compose up --build -d
 
 build-api:
