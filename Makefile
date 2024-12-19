@@ -2,13 +2,19 @@
 
 MVNW=./mvnw
 
-build-all:
+build:
 	@$(MVNW) clean package -DskipTests
 	docker-compose up --build -d
 
-build-api:
+rebuild-api:
 	docker-compose build ms.payments.api
 	docker-compose up -d
+
+migrate:
+	@$(MVNW) flyway:migrate
+
+db-clean:
+	@$(MVNW) flyway:clean
 
 debug:
 	@$(MVNW) clean package -DskipTests

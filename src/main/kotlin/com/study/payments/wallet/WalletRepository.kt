@@ -1,7 +1,7 @@
 package com.study.payments.wallet
 
-interface WalletRepository {
-    fun findById(id: Long): Wallet
-    fun save(wallet: Wallet): Wallet
-    fun isConsumerWallet(walletId: Long): Boolean
-}
+import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
+
+@Repository
+interface WalletRepository : JpaRepository<Wallet, Long>

@@ -1,22 +1,14 @@
 CREATE TABLE wallets (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    consumer_id BIGINT UNIQUE,
-    seller_id BIGINT UNIQUE,
-    balance DECIMAL(15, 2) NOT NULL DEFAULT 0.00,
-    CONSTRAINT fk_wallet_consumer FOREIGN KEY (consumer_id) REFERENCES consumers (id) ON DELETE CASCADE,
-    CONSTRAINT fk_wallet_seller FOREIGN KEY (seller_id) REFERENCES sellers (id) ON DELETE CASCADE
+    id VARCHAR(36) PRIMARY KEY,
+    balance DECIMAL(15, 2) NOT NULL,
+    seller_id VARCHAR(36) UNIQUE,
+    consumer_id VARCHAR(36) UNIQUE,
+
+    FOREIGN KEY (seller_id) REFERENCES sellers (id),
+    FOREIGN KEY (consumer_id) REFERENCES consumers (id)
 );
 
--- associando carteiras a consumidores
-INSERT INTO wallets (consumer_id, balance)
-VALUES
-    (1, 1000.00),
-    (2, 1500.00),
-    (3, 500.00);
-
--- associando carteiras a vendedores
-INSERT INTO wallets (seller_id, balance)
-VALUES
-    (1, 2000.00),
-    (2, 3000.00),
-    (3, 4000.00);
+-- Inserir dados fictícios na tabela wallets
+INSERT INTO wallets (id, balance, seller_id, consumer_id) VALUES
+    ('5e6d7c8b-9a0f-1e2d-3c4b-5a6b7c8d9e0f', 1000.00, '1e2d3c4b-5a6f-7e8d-9c0b-1a2b3c4d5e6f', NULL),
+    ('6e7d8c9b-0a1f-2e3d-4c5b-6a7b8c9d0e1f', 500.00, NULL, '3e4d5c6b-7a8f-9e0d-1c2b-3a4b5c6d7e8f');
