@@ -52,8 +52,11 @@ class SellerController (
         summary = "Get seller details",
         description = "Return the details of a specific seller"
     )
-    fun details(@PathVariable id: String): ResponseEntity<Optional<SellerDetailsResponseDto>> = ResponseEntity
-        .ok(service.getSellerDetails(id).map { Seller.toDetailsResponseDto(it) })
+    fun details(@PathVariable id: String): ResponseEntity<SellerDetailsResponseDto> {
+        val seller = service.getSellerDetails(id)
+
+        return ResponseEntity.ok(Seller.toDetailsResponseDto(seller))
+    }
 
     @PostMapping(
         consumes = [MediaType.APPLICATION_JSON_VALUE],

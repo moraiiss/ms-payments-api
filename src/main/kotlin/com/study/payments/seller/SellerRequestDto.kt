@@ -7,4 +7,6 @@ data class SellerRequestDto(
     val email: String,
     val document: String,
     val balance: BigDecimal,
-)
+) {
+    companion object
+}
